@@ -7,5 +7,68 @@
 </head>
     <body>
     <!--Add a registration form here -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Dealerships Review </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/djangoapp/about">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/djangoapp/contact">Contact Us</a>
+            </li>
+            </ul>
+
+            <ul class="nav navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <div class="rightalign">
+                   
+                        <a class="dropbtn">{{user.username}}</a>
+                        <a href="{% url 'djangoapp:logout' %}">Logout</a>
+            
+                    
+                </div>
+            
+                {% else %}
+                <li>
+                        <a class="btn btn-link" href="/djangoapp/login/">Login</a>
+                        <a class="btn btn-link" href="/djangoapp/registration/">Sign Up</a>
+                </li>
+            
+                {% endif %}
+            </ul>
+
+          </div>
+        </nav>
+
+    <form action="{% url 'djangoapp:registration' %}" method="post">
+        <div class="container">
+            <h1>Sign Up</h1>
+            <hr>
+            <p><label for="username"><b>User Name</b></label>
+            <input type="text" placeholder="Enter User Name: " name="username" required>
+            </p>
+            <p><label for="firstname"><b>First Name</b></label>
+            <input type="text" placeholder="Enter First Name: " name="firstname" required>
+            </p>
+            <p><label for="lastname"><b>Last Name</b></label>
+            <input type="text" placeholder="Enter Last Name: " name="lastname" required>
+            </p>
+            <p>
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password: " name="psw" required>
+            </p>
+            <div>
+                {% csrf_token %}
+                <button class="button" type="submit">Sign Up</button>
+            </div>
+        </div>
+    </form>
     </body>
 </html>
