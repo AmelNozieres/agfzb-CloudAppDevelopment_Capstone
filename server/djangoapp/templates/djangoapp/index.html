@@ -75,7 +75,46 @@
             </form>-->
           </div>
         </nav>
+        <div class="container-fluid">
+          {% if messages %}
+              {% for message in messages %}
+                  <div class="alert alert-warning" role="alert">{{ message }}</div>
+              {% endfor %}
+          {% endif %}
       
+          <table class="table" id="table"
+              data-filter-control="true">
+              <thead>
+                  <tr>
+                      <th data-field="id">ID</th>
+                      <th data-field="full_name">Dealer Name</th>
+                      <th data-field="city">City</th>
+                      <th data-field="address">Address</th>
+                      <th data-field="zip">Zip</th>
+                      <th data-field="state" data-filter-control="select">State</th>
+                  </tr>
+              </thead>
+              <tbody>
+                {% for dealer in dealerships%}
+                    <tr>
+                        <td style="padding: 2%;">{{dealer.id}}</td>
+                        <td style="padding: 2%;"><a href="{% url 'djangoapp:dealer_details' dealer.id %}">{{dealer.full_name}}</a></td>
+                        <td style="padding: 2%;">{{dealer.city}}</td>
+                        <td style="padding: 2%;">{{dealer.address}}</td>
+                        <td style="padding: 2%;">{{dealer.zip}}</td>
+                        <td style="padding: 2%;">{{dealer.st}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+          </div>
+          <footer class="fixed-bottom">
+                <div class="container-fluid">
+                  <a href="{% url 'djangoapp:contact' %}">Contact Us</a>
+                </div>
+          </footer>
+      </div>
+        
 
     <!--Add a dealer table here -->
 
