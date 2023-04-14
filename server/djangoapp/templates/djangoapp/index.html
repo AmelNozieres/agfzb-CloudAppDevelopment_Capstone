@@ -81,9 +81,7 @@
                   <div class="alert alert-warning" role="alert">{{ message }}</div>
               {% endfor %}
           {% endif %}
-      
-          <table class="table" id="table"
-              data-filter-control="true">
+          <table class="table" id="table" data-filter-control="true">
               <thead>
                   <tr>
                       <th data-field="id">ID</th>
@@ -119,5 +117,9 @@
     <!--Add a dealer table here -->
 
     </body>
-
+<script>
+  $(function() {
+    $('#table').bootstrapTable()
+  })
+</script>
 </html>
